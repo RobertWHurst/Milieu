@@ -32,6 +32,11 @@
   ],
   "author": "Robert Hurst <robertwhurst@gmail.com>",
   "license": "MIT",
+  "files": [
+    "lib",
+    "types",
+    "index.js"
+  ],
   "dependencies": {
     "cli-table3": "^0.5.1",
     "colors": "^1.1.2",
