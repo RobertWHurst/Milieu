@@ -12,6 +12,10 @@ export interface Milieu {
   [s: string]: any
 }
 
-export default interface createMilieu {
-  (applicationName: string, defaults: object, opts: Opts): Milieu
+export interface createMilieu {
+  (applicationName: string, defaults: object, opts?: Opts): Milieu
 }
+
+export const Milieu: Milieu
+declare const createMilieu: createMilieu
+export default createMilieu
