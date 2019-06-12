@@ -9,14 +9,26 @@ declare namespace milieu {
     parseValues?: boolean
   }
 
-  export class MilieuConstructor<Config> {
+  export class MilieuConstructor<Config extends object> {
     constructor (applicationName: string, defaults: Config, opts?: Opts)
+    explain (): { [K in keyof Config]: { val: Config[K], src: string } }
+    printExplainTable (): void
+    toObject (): Config
+    toJSON (): Config
   }
 
-  export type Milieu<Config> = Config & MilieuConstructor<Config>
-  export const Milieu: new <Config>(applicationName: string, defaults: Config, opts?: Opts) => Milieu<Config>
+  export type Milieu<Config extends object> = Config & MilieuConstructor<Config>
+  export const Milieu: new <Config extends object>(
+    applicationName: string,
+    defaults: Config,
+    opts?: Opts
+  ) => Milieu<Config>
 }
 
-declare function milieu<Config>(applicationName: string, defaults: Config, opts?: milieu.Opts): milieu.Milieu<Config>
+declare function milieu<Config extends object>(
+  applicationName: string,
+  defaults: Config,
+  opts?: milieu.Opts
+): milieu.Milieu<Config>
 
 export = milieu
