@@ -1,21 +1,22 @@
-export interface Opts {
-  argv?: string
-  env?: { [s: string]: string }
-  platform?: string
-  cwd?: string
-  unsetEnvValues?: boolean
-  parseValues?: boolean
+declare namespace milieu {
+
+  export interface Opts {
+    argv?: string
+    env?: { [s: string]: string }
+    platform?: string
+    cwd?: string
+    unsetEnvValues?: boolean
+    parseValues?: boolean
+  }
+
+  export class MilieuConstructor<Config> {
+    constructor (applicationName: string, defaults: Config, opts?: Opts)
+  }
+
+  export type Milieu<Config> = Config & MilieuConstructor<Config>
+  export const Milieu: new <Config>(applicationName: string, defaults: Config, opts?: Opts) => Milieu<Config>
 }
 
-export interface Milieu {
-  new (applicationName: string, defaults: object, opts?: Opts)
-  [s: string]: any
-}
+declare function milieu<Config>(applicationName: string, defaults: Config, opts?: milieu.Opts): milieu.Milieu<Config>
 
-export interface createMilieu {
-  (applicationName: string, defaults: object, opts?: Opts): Milieu
-}
-
-export const Milieu: Milieu
-declare const createMilieu: createMilieu
-export default createMilieu
+export = milieu
