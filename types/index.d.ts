@@ -23,7 +23,7 @@ declare namespace milieu {
   }
 
   export type Milieu<Config extends object> =
-    Readonly<Config> & MilieuConstructor<Config>;
+    Config & MilieuConstructor<Config>;
 
   export const Milieu: new <Config extends object>(
     applicationName: string,
