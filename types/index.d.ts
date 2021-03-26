@@ -20,10 +20,11 @@ declare namespace milieu {
     printExplainTable(): void;
     toObject(): Config;
     toJSON(): Config;
+    set(configUpdate: Partial<Config>): void
   }
 
   export type Milieu<Config extends object> =
-    Config & MilieuConstructor<Config>;
+    Readonly<Config> & MilieuConstructor<Config>;
 
   export const Milieu: new <Config extends object>(
     applicationName: string,
