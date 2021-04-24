@@ -12,6 +12,7 @@ global.__testIni__ = require('ini')
 global.__testPlatform__ = 'darwin'
 global.__testEnv__ = {
   APPLICATION__E0: 'e0',
+  APPLICATION___F0: 'F0',
   HOME: path.join('/home/user')
 }
 global.__testArgv__ = [
@@ -116,6 +117,7 @@ describe('Milieu', () => {
 
       assert.deepStrictEqual(explanation, {
         e0: { val: 'e0', src: 'environment' },
+        F0: { val: 'F0', src: 'environment' },
         a0: { val: 'a0', src: 'flag' },
         c0: { val: 'c0', src: 'defaults' },
         c1: { val: 'c1', src: path.join('../../../.applicationrc') },
@@ -140,6 +142,7 @@ describe('Milieu', () => {
 
       assert.deepStrictEqual(config, {
         e0: 'e0',
+        F0: 'F0',
         a0: 'a0',
         c0: 'c0',
         c1: 'c1',
