@@ -1,6 +1,6 @@
-type DeepPartial<T> = {
-  [K in keyof T]?: DeepPartial<T[K]>
-}
+type DeepPartial<T> = Partial<{
+  [K in keyof T]: DeepPartial<T[K]>
+}>
 
 declare namespace milieu {
   export interface Opts {
@@ -33,7 +33,7 @@ declare namespace milieu {
     applicationName: string,
     defaults: DeepPartial<Config>,
     opts?: Opts
-  ) => Milieu<Config>;
+  ) => Milieu<Config>
 }
 
 declare function milieu<Config extends object>(
