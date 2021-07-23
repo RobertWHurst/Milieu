@@ -18,7 +18,7 @@ declare namespace milieu {
       : { val: Config[Key]; src: string }
   };
   export class MilieuConstructor<Config extends object> {
-    constructor(applicationName: string, defaults: DeepPartial<Config>, opts?: Opts);
+    constructor(applicationName: string, defaults: Config, opts?: Opts);
     explain(): Explanation<Config>;
     printExplainTable(): void;
     toObject(): Config;
@@ -31,14 +31,14 @@ declare namespace milieu {
 
   export const Milieu: new <Config extends object>(
     applicationName: string,
-    defaults: DeepPartial<Config>,
+    defaults: Config,
     opts?: Opts
   ) => Milieu<Config>
 }
 
 declare function milieu<Config extends object>(
   applicationName: string,
-  defaults: DeepPartial<Config>,
+  defaults: Config,
   opts?: milieu.Opts
 ): milieu.Milieu<Config>;
 
