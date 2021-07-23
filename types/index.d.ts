@@ -1,3 +1,7 @@
+type DeepPartial<T> = {
+  [K in keyof T]?: DeepPartial<T[K]>
+}
+
 declare namespace milieu {
   export interface Opts {
     argv?: string;
@@ -13,14 +17,13 @@ declare namespace milieu {
       ? Explanation<Config[Key]>
       : { val: Config[Key]; src: string }
   };
-
   export class MilieuConstructor<Config extends object> {
-    constructor(applicationName: string, defaults: Partial<Config>, opts?: Opts);
+    constructor(applicationName: string, defaults: DeepPartial<Config>, opts?: Opts);
     explain(): Explanation<Config>;
     printExplainTable(): void;
     toObject(): Config;
     toJSON(): Config;
-    set(configUpdate: Partial<Config>): void
+    set(configUpdate: DeepPartial<Config>): void
   }
 
   export type Milieu<Config extends object> =
@@ -28,14 +31,14 @@ declare namespace milieu {
 
   export const Milieu: new <Config extends object>(
     applicationName: string,
-    defaults: Partial<Config>,
+    defaults: DeepPartial<Config>,
     opts?: Opts
   ) => Milieu<Config>;
 }
 
 declare function milieu<Config extends object>(
   applicationName: string,
-  defaults: Partial<Config>,
+  defaults: DeepPartial<Config>,
   opts?: milieu.Opts
 ): milieu.Milieu<Config>;
 
