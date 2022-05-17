@@ -36,6 +36,7 @@ declare namespace milieu {
   ) => Milieu<Config>
 }
 
+// eslint-disable-next-line no-redeclare
 declare function milieu<Config extends object>(
   applicationName: string,
   defaults: Config,
